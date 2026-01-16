@@ -5,27 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مكتب المؤيد للمحاماة والاستشارات القانونية</title>
     
-    <!-- خطوط عربية (تجوّل) -->
+    <!-- أيقونة الموقع (Favicon) - رمز الميزان -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/921/921356.png" type="image/png">
+
+    <!-- خطوط جوجل (Tajawal) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     
-    <!-- مكتبة Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- مكتبة Bootstrap 5 للتصميم المتجاوب -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
     
-    <!-- أيقونات FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- مكتبة FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #0F172A; /* كحلي غامق */
-            --secondary-color: #C5A059; /* ذهبي */
-            --light-bg: #F8FAFC;
+            --primary-color: #0e2a47; /* كحلي رسمي */
+            --secondary-color: #c5a059; /* ذهبي */
+            --light-bg: #f8f9fa;
         }
 
         body {
             font-family: 'Tajawal', sans-serif;
             background-color: var(--light-bg);
+            color: #333;
             overflow-x: hidden;
         }
 
@@ -33,16 +37,21 @@
         .navbar {
             background-color: var(--primary-color);
             padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         .navbar-brand {
-            color: var(--secondary-color) !important;
             font-weight: 800;
-            font-size: 1.5rem;
+            color: var(--secondary-color) !important;
+            font-size: 1.6rem;
+        }
+        .navbar-brand i {
+            margin-left: 10px;
         }
         .nav-link {
             color: #fff !important;
             font-size: 1.1rem;
-            margin-left: 15px;
+            margin: 0 10px;
+            transition: 0.3s;
         }
         .nav-link:hover {
             color: var(--secondary-color) !important;
@@ -52,74 +61,82 @@
         .carousel-item {
             height: 85vh;
             min-height: 500px;
+            position: relative;
         }
         .carousel-item img {
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.5);
+            filter: brightness(0.5); /* تغميق الصورة ليظهر النص بوضوح */
         }
         .carousel-caption {
-            bottom: 30%;
+            bottom: 35%;
+            z-index: 2;
         }
         .carousel-caption h1 {
             font-size: 3.5rem;
             font-weight: 800;
             color: var(--secondary-color);
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
         }
         .carousel-caption p {
             font-size: 1.5rem;
             color: #fff;
+            font-weight: 500;
         }
 
-        /* تنسيق الخدمات */
-        .section-title {
+        /* تنسيق قسم الخدمات */
+        .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin: 60px 0 40px;
         }
-        .section-title h2 {
+        .section-header h2 {
             color: var(--primary-color);
             font-weight: 800;
             position: relative;
             display: inline-block;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
-        .section-title h2::after {
+        .section-header h2::after {
             content: '';
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--secondary-color);
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 2px;
         }
 
-        .service-box {
+        .service-card {
             background: #fff;
-            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
+            padding: 30px 20px;
             height: 100%;
-            border-top: 3px solid transparent;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid var(--primary-color);
         }
-        .service-box:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            border-top: 3px solid var(--secondary-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-top-color: var(--secondary-color);
         }
-        .icon {
-            font-size: 40px;
+        .service-icon {
+            font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 20px;
         }
-        .service-box h4 {
-            font-weight: 700;
+        .service-card h4 {
             color: var(--primary-color);
+            font-weight: 700;
             margin-bottom: 15px;
+            font-size: 1.3rem;
         }
-        .service-box p {
+        .service-card p {
             color: #666;
             font-size: 0.95rem;
             line-height: 1.6;
@@ -127,86 +144,109 @@
 
         /* تنسيق نموذج التواصل */
         .contact-section {
-            background-color: var(--primary-color);
-            color: #fff;
+            background: linear-gradient(rgba(14, 42, 71, 0.95), rgba(14, 42, 71, 0.95)), url('https://lawfirm-almoayad.com/wp-content/uploads/2025/10/e3b582517fdfb99fcc8aca2d0455e77127038f96-7500x4394-1-1536x900.avif');
+            background-size: cover;
+            background-attachment: fixed;
             padding: 80px 0;
-            position: relative;
+            color: #fff;
+            margin-top: 60px;
         }
-        .form-container {
+        .contact-form-container {
             background: #fff;
             padding: 40px;
             border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
             color: #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         .form-control {
             padding: 12px;
-            background-color: #f9f9f9;
+            border-radius: 8px;
             border: 1px solid #ddd;
+            margin-bottom: 20px;
+            background-color: #fcfcfc;
         }
         .form-control:focus {
-            box-shadow: none;
             border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(197, 160, 89, 0.25);
         }
-        .btn-gold {
+        .btn-submit {
             background-color: var(--secondary-color);
             color: #fff;
-            padding: 12px 30px;
             border: none;
-            font-weight: bold;
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 8px;
             width: 100%;
-            border-radius: 6px;
             transition: 0.3s;
+            font-size: 1.1rem;
         }
-        .btn-gold:hover {
-            background-color: #b08d4b;
+        .btn-submit:hover {
+            background-color: #a88543;
             color: #fff;
         }
 
         /* رسالة النجاح */
-        #successMessage {
+        #success-message {
             display: none;
             background-color: #d4edda;
             color: #155724;
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
             text-align: center;
             border: 1px solid #c3e6cb;
+            margin-top: 20px;
             font-weight: bold;
+            font-size: 1.1rem;
         }
 
-        /* واتساب العائم */
+        /* الفوتر */
+        footer {
+            background: #08192b;
+            color: #bbb;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-phone {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+
+        /* زر الواتساب العائم */
         .whatsapp-float {
             position: fixed;
             width: 60px;
             height: 60px;
-            bottom: 25px;
-            right: 25px;
+            bottom: 30px;
+            right: 30px;
             background-color: #25d366;
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 32px;
+            font-size: 35px;
             box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
             z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: 0.3s;
+            transition: all 0.3s ease;
         }
         .whatsapp-float:hover {
             transform: scale(1.1);
-            color: #fff;
             background-color: #20b858;
+            color: #fff;
         }
 
-        footer {
-            background: #0a0f1d;
-            color: #888;
-            padding: 20px 0;
-            text-align: center;
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .carousel-caption h1 { font-size: 2rem; }
+            .carousel-caption p { font-size: 1rem; }
+            .section-header h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -216,207 +256,212 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-scale-balanced me-2"></i> مكتب المؤيد للمحاماة
+                <i class="fas fa-scale-balanced"></i> مكتب المؤيد للمحاماة
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#home">الرئيسية</a></li>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">الرئيسية</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">خدماتنا</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">تواصل معنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">طلب استشارة</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- السلايدر المتحرك -->
-    <header id="home">
-        <div id="heroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://lawfirm-almoayad.com/wp-content/uploads/2025/10/e3b582517fdfb99fcc8aca2d0455e77127038f96-7500x4394-1-1536x900.avif" class="d-block w-100" alt="مكتب المؤيد للمحاماة">
-                    <div class="carousel-caption d-md-block">
-                        <h1>مكتب المؤيد للمحاماة</h1>
-                        <p>دفاع قوي .. واستشارات موثوقة</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://lawfirm-almoayad.com/wp-content/uploads/2025/10/%D9%85%D8%AD%D8%A7%D9%85%D9%8A-%D8%A8%D8%A7%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9-%D8%A8%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-1536x860.jpg" class="d-block w-100" alt="المحكمة">
-                    <div class="carousel-caption d-md-block">
-                        <h1>خبرة قانونية شاملة</h1>
-                        <p>نغطي كافة التخصصات القانونية بمهنية عالية</p>
-                    </div>
+    <header id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        </div>
+        <div class="carousel-inner">
+            <!-- الصورة الأولى -->
+            <div class="carousel-item active">
+                <img src="https://lawfirm-almoayad.com/wp-content/uploads/2025/10/e3b582517fdfb99fcc8aca2d0455e77127038f96-7500x4394-1-1536x900.avif" class="d-block w-100" alt="مكتب محاماة">
+                <div class="carousel-caption">
+                    <h1>مكتب المؤيد للمحاماة</h1>
+                    <p>الريادة في تقديم الخدمات القانونية المتكاملة</p>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroSlider" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroSlider" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+            <!-- الصورة الثانية -->
+            <div class="carousel-item">
+                <img src="https://lawfirm-almoayad.com/wp-content/uploads/2025/10/%D9%85%D8%AD%D8%A7%D9%85%D9%8A-%D8%A8%D8%A7%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9-%D8%A8%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9-1536x860.jpg" class="d-block w-100" alt="استشارات قانونية">
+                <div class="carousel-caption">
+                    <h1>نحمي حقوقك</h1>
+                    <p>فريق من الخبراء جاهز للدفاع عن مصالحك</p>
+                </div>
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
     </header>
 
     <!-- قسم الخدمات -->
-    <section id="services" class="container py-5 mt-4">
-        <div class="section-title">
+    <section id="services" class="container">
+        <div class="section-header">
             <h2>خدماتنا القانونية</h2>
-            <p class="text-muted mt-2">نقدم مجموعة متكاملة من الخدمات القانونية المتخصصة</p>
+            <p class="text-muted mt-2">تشمل خبراتنا مجموعة واسعة من التخصصات القانونية</p>
         </div>
 
         <div class="row g-4">
-            <!-- قائمة الخدمات -->
+            <!-- الخدمات الـ 19 -->
+            
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-users icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-users service-icon"></i>
                     <h4>الأحوال الشخصية</h4>
                     <p>يشمل القضايا المتعلقة بالاسرة مثل الزواج، الطلاق، حضانة، النفقة.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-briefcase icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-briefcase service-icon"></i>
                     <h4>القضايا التجارية</h4>
-                    <p>يشمل المنازعات التجارية مثل الشراكات التجارية، العقود، والنزاعات بين الشركات.</p>
+                    <p>يشمل المنازعات التجارية مثل الشراكات التجارية، العقود، ونزاعات الشركات.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-hard-hat icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-user-tie service-icon"></i>
                     <h4>الخلافات العمالية</h4>
-                    <p>يشمل النزاعات بين أصحاب العمل والعمال، مثل التأخير في دفع الرواتب.</p>
+                    <p>النزاعات والمشاكل القانونية بين أصحاب العمل والعمال، مثل الرواتب.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-user-secret icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-laptop-code service-icon"></i>
                     <h4>الجرائم المعلوماتية</h4>
-                    <p>يشمل الجرائم التي ترتكب عبر الشبكة المعلوماتية، مثل الاحتيال الإلكتروني.</p>
+                    <p>الجرائم التي ترتكب عبر الشبكة المعلوماتية، مثل الاحتيال الإلكتروني.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-building icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-city service-icon"></i>
                     <h4>القضايا العقارية</h4>
-                    <p>يشمل القضايا المتعلقة بالعقارات، مثل البيع والشراء والإيجار ونزاعات الملكية.</p>
+                    <p>البيع والشراء والإيجار والنزاعات حول ملكية العقار.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-scroll icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-hand-holding-usd service-icon"></i>
                     <h4>قسمة التركات</h4>
-                    <p>يشمل التعامل مع التركة وتوزيع الأموال والممتلكات بين الورثة.</p>
+                    <p>التعامل مع التركة وتوزيع الأموال والممتلكات بين الورثة.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-gavel icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-gavel service-icon"></i>
                     <h4>القضايا الجنائية</h4>
-                    <p>يشمل الجرائم والمخالفات الجنائية والدفاع عن المتهمين أو الإدعاء ضدهم.</p>
+                    <p>الجرائم والمخالفات الجنائية والدفاع عن المتهمين أو الإدعاء ضدهم.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-user-md icon"></i>
-                    <h4>الاخطاء الطبية</h4>
-                    <p>قضايا التقصير او الاهمال الطبي الذي يتسبب في إصابة المرضى.</p>
+                <div class="service-card text-center">
+                    <i class="fas fa-user-nurse service-icon"></i>
+                    <h4>الأخطاء الطبية</h4>
+                    <p>قضايا التقصير أو الإهمال الطبي المسبب لإصابة المرضى.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-file-invoice-dollar icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-coins service-icon"></i>
                     <h4>الزكاة والضريبة</h4>
-                    <p>يشمل القوانين المتعلقة بالضرائب والزكاة وتطبيقها على الأفراد والشركات.</p>
+                    <p>القوانين المتعلقة بالضرائب والزكاة وتطبيقها على الأفراد والشركات.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-university icon"></i>
-                    <h4>القضايا الادارية</h4>
-                    <p>يشمل القضايا المتعلقة بالقوانين واللوائح والإجراءات والقرارات الإدارية.</p>
+                <div class="service-card text-center">
+                    <i class="fas fa-file-signature service-icon"></i>
+                    <h4>القضايا الإدارية</h4>
+                    <p>القضايا المتعلقة بالقوانين واللوائح والإجراءات والقرارات الإدارية.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-shield-alt icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-shield-halved service-icon"></i>
                     <h4>القضايا التأمينية</h4>
-                    <p>يشمل النزاعات المتعلقة بشركات التأمين، مثل التأمين الطبي والمركبات.</p>
+                    <p>النزاعات المتعلقة بشركات التأمين، الطبي والمركبات وغيرها.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-money-check-alt icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-money-bill-transfer service-icon"></i>
                     <h4>القضايا التمويلية</h4>
-                    <p>يشمل النزاعات التمويلية مثل الديون، والتمويل العقاري، والتسوية البنكية.</p>
+                    <p>النزاعات التمويلية مثل الديون، التمويل العقاري، والتسوية البنكية.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-car-crash icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-car-burst service-icon"></i>
                     <h4>الحوادث المرورية</h4>
-                    <p>يشمل الحوادث المرورية والمسؤولية المدنية والجنائية المترتبة عنها.</p>
+                    <p>الحوادث المرورية والمسؤولية المدنية والجنائية المترتبة عنها.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-mask icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-user-secret service-icon"></i>
                     <h4>النصب والاحتيال</h4>
-                    <p>يشمل الجرائم المتعلقة بالنصب والاحتيال والاستيلاء على المال بغير وجه حق.</p>
+                    <p>الجرائم المتعلقة بالنصب والاحتيال والاستيلاء على المال بغير وجه حق.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-hand-holding-heart icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-scroll service-icon"></i>
                     <h4>الأوقاف والوصايا</h4>
-                    <p>القضايا المتعلقة بالأوقاف والوصايا وتنفيذ الوصايا الشرعية وغيرها.</p>
+                    <p>القضايا المتعلقة بالأوقاف وتنفيذ الوصايا الشرعية وغيرها.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-balance-scale-right icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-scale-balanced service-icon"></i>
                     <h4>القضايا الحقوقية</h4>
-                    <p>المطالبة بالحقوق التي تم التعدي عليها من خلال رفع دعوى أمام المحكمة العامة.</p>
+                    <p>المطالبة بالحقوق المعتدى عليها من خلال رفع دعوى أمام المحكمة العامة.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-check-double icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-file-invoice service-icon"></i>
                     <h4>قضايا التنفيذ</h4>
-                    <p>يشمل القضايا التي تنظرها محكمة التنفيذ في منازعات التنفيذ.</p>
+                    <p>القضايا التي تنظرها محكمة التنفيذ في منازعات التنفيذ.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-lightbulb icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-copyright service-icon"></i>
                     <h4>الملكية الفكرية</h4>
-                    <p>الحقوق التي تمنح الأفراد والشركات حماية ابداعاتهم وابتكاراتهم.</p>
+                    <p>الحقوق التي تمنح الأفراد والشركات حماية إبداعاتهم وابتكاراتهم.</p>
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-6">
-                <div class="service-box">
-                    <i class="fas fa-laptop-code icon"></i>
+                <div class="service-card text-center">
+                    <i class="fas fa-globe service-icon"></i>
                     <h4>استفسارات منصة ناجز</h4>
-                    <p>تقديم الدعم والاستشارات فيما يتعلق بخدمات بوابة ناجز العدلية.</p>
+                    <p>خدمات الدعم والاستشارات المتعلقة بالبوابة العدلية ناجز.</p>
                 </div>
             </div>
         </div>
@@ -425,48 +470,53 @@
     <!-- قسم التواصل -->
     <section id="contact" class="contact-section">
         <div class="container">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-lg-6 mb-4 text-center text-lg-end">
-                    <h2 class="mb-3 fw-bold">هل تحتاج إلى استشارة قانونية؟</h2>
-                    <p class="lead">نحن هنا لخدمتك. املأ النموذج وسيتم التواصل معك فوراً.</p>
-                    <div class="mt-4">
-                        <p><i class="fab fa-whatsapp ms-2"></i> 0560077098</p>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-end">
+                    <h2 class="fw-bold mb-3 display-5">تواصل معنا الآن</h2>
+                    <p class="lead mb-4">نحن هنا لخدمتك والرد على كافة استفساراتك القانونية.</p>
+                    <div class="d-flex flex-column gap-3">
+                        <a href="tel:0560077098" class="text-white text-decoration-none fs-4">
+                            <i class="fas fa-phone-alt ms-2 text-warning"></i> 0560077098
+                        </a>
+                        <p class="text-white-50">نسعد بتواصلكم معنا على مدار الساعة</p>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="form-container">
-                        <h4 class="mb-4 text-center fw-bold">طلب خدمة / استشارة</h4>
+                
+                <div class="col-lg-6">
+                    <div class="contact-form-container">
+                        <h3 class="text-center mb-4" style="color: var(--primary-color);">طلب استشارة / خدمة</h3>
                         
-                        <!-- نموذج التواصل -->
-                        <!-- تم استخدام JS للتعامل مع الإرسال لإظهار الرسالة المطلوبة -->
-                        <form id="consultationForm" action="https://formsubmit.co/king.babgi@gmail.com" method="POST">
+                        <!-- نموذج التواصل الفعال -->
+                        <!-- Action يوجه إلى خدمة FormSubmit للإرسال للإيميل -->
+                        <form id="lawForm" action="https://formsubmit.co/king.babgi@gmail.com" method="POST">
                             
-                            <!-- إعدادات مخفية للنموذج -->
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="_subject" value="طلب استشارة جديد - موقع المؤيد">
-                            <input type="hidden" name="_template" value="table">
+                            <!-- إعدادات مخفية للتحكم في الإرسال -->
+                            <input type="hidden" name="_captcha" value="false"> <!-- إلغاء الكابتشا لتسهيل الإرسال -->
+                            <input type="hidden" name="_template" value="table"> <!-- شكل الايميل -->
+                            <input type="hidden" name="_subject" value="طلب جديد من موقع مكتب المؤيد">
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">الاسم الكريم</label>
-                                <input type="text" name="الاسم" class="form-control" placeholder="أدخل اسمك الكامل" required>
+                                <input type="text" name="الاسم" class="form-control" placeholder="أدخل اسمك هنا" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label fw-bold">رقم الجوال (سيظهر للمحامي)</label>
-                                <input type="tel" name="رقم_الجوال" class="form-control" placeholder="05xxxxxxxx" required>
+                                <label class="form-label fw-bold">رقم الجوال</label>
+                                <input type="tel" name="رقم_الجوال" class="form-control" placeholder="05xxxxxxxx" required style="direction: ltr; text-align: right;">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">نوع الخدمة / الموضوع</label>
-                                <input type="text" name="نوع_الخدمة" class="form-control" placeholder="مثال: قضية تجارية، استشارة عمالية..." required>
+                                <input type="text" name="نوع_الخدمة" class="form-control" placeholder="اكتب نوع الخدمة المطلوبة هنا..." required>
                             </div>
 
-                            <button type="submit" id="submitBtn" class="btn-gold">إرسال الطلب</button>
+                            <button type="submit" id="submitBtn" class="btn-submit">إرسال الطلب</button>
                         </form>
 
-                        <!-- رسالة الشكر -->
-                        <div id="successMessage">
-                            شكرا على تواصل معنا.. وسوف نتواصل معك في اقرب وقت خلال دقايق
+                        <!-- رسالة الشكر التي ستظهر بعد الإرسال -->
+                        <div id="success-message">
+                            <i class="fas fa-check-circle fa-2x mb-2"></i><br>
+                            شكرا على تواصل معنا.. وسوف نتواصل معك معك في اقرب وقت خلال دقايق
                         </div>
                     </div>
                 </div>
@@ -477,49 +527,57 @@
     <!-- الفوتر -->
     <footer>
         <div class="container">
-            <p class="mb-0">جميع الحقوق محفوظة &copy; 2025 مكتب المؤيد للمحاماة</p>
+            <div class="mb-3">
+                <i class="fas fa-scale-balanced fa-2x mb-3" style="color: var(--secondary-color);"></i>
+                <h5>مكتب المؤيد للمحاماة</h5>
+            </div>
+            <p>للتواصل المباشر:</p>
+            <a href="tel:0560077098" class="footer-phone">0560077098</a>
+            <hr style="border-color: #333; width: 50%; margin: 20px auto;">
+            <p class="mb-0">جميع الحقوق محفوظة &copy; 2026</p>
         </div>
     </footer>
 
-    <!-- زر واتساب العائم -->
+    <!-- زر الواتساب العائم -->
     <a href="https://wa.me/966560077098" class="whatsapp-float" target="_blank" title="تواصل عبر واتساب">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- ملفات جافاسكريبت -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
-        // كود خاص لجعل النموذج يرسل البيانات ثم يظهر رسالة الشكر في نفس الصفحة
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // منع إعادة تحميل الصفحة
+        // سكربت للتعامل مع إرسال النموذج وإظهار رسالة الشكر دون مغادرة الصفحة
+        document.getElementById('lawForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // منع الانتقال لصفحة أخرى
             
-            var form = this;
-            var submitBtn = document.getElementById('submitBtn');
-            var successMsg = document.getElementById('successMessage');
+            const form = this;
+            const btn = document.getElementById('submitBtn');
+            const successMsg = document.getElementById('success-message');
             
-            // تغيير نص الزر أثناء الإرسال
-            submitBtn.innerHTML = 'جاري الإرسال...';
-            submitBtn.disabled = true;
+            // تغيير نص الزر ليدل على التحميل
+            btn.innerHTML = 'جاري الإرسال...';
+            btn.disabled = true;
 
-            // جمع بيانات النموذج
-            var formData = new FormData(form);
+            // إعداد البيانات للإرسال
+            const formData = new FormData(form);
 
-            // إرسال البيانات باستخدام Fetch API
+            // استخدام Fetch API لإرسال البيانات في الخلفية
             fetch(form.action, {
                 method: 'POST',
                 body: formData
             })
             .then(response => {
-                // عند نجاح الإرسال
-                form.style.display = 'none'; // إخفاء النموذج
-                successMsg.style.display = 'block'; // إظهار رسالة الشكر
+                // إخفاء النموذج وإظهار رسالة الشكر
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+                // التمرير إلى رسالة النجاح
+                successMsg.scrollIntoView({ behavior: 'smooth' });
             })
             .catch(error => {
-                // في حال حدوث خطأ
-                submitBtn.innerHTML = 'حدث خطأ، حاول مرة أخرى';
-                submitBtn.disabled = false;
                 console.error('Error:', error);
+                btn.innerHTML = 'حدث خطأ، حاول مرة أخرى';
+                btn.disabled = false;
             });
         });
     </script>
